@@ -1,5 +1,36 @@
 from waflib import Logs, Errors
 from waftools import tool
+from waflib.Errors import ConfigurationError
+
+def copy_bison(task):
+    """Copy generated bison/flex files from build tree to source tree.
+    """
+    import os
+    for node in task.inputs:
+        orig_file = node.get_bld().abspath()
+        copy_dir = node.get_src().parent.abspath()
+        copy_file = os.path.join(copy_dir, 'parser-c', node.name)
+        orig = None
+        copy = None
+        try:
+            orig = open(orig_file, 'rb')
+            copy = open(copy_file, 'wb')
+            copy.write(orig.read())
+        finally:
+            if orig:
+                orig.close()
+            if copy:
+                copy.close()
+
+def xcp_list_source(bld):
+    source = bld.path.ant_glob('collparser/*.c')
+    includes = "collparser"
+    if bld.env.NO_BISON:
+        source += bld.path.ant_glob('collparser/parser-c/*.c')
+        includes += " collparser/parser-c"
+    else:
+        source += bld.path.ant_glob('collparser/*.[yl]')
+    return source, includes
 
 def build(bld):
     source = """
@@ -30,9 +61,12 @@ def build(bld):
     else:
         source.extend(["visualization/dummy.c"])
 
+    xcp_source, xcp_includes = xcp_list_source(bld)
+    source += xcp_source
+
     obj = bld(features = 'c cshlib visibilityhidden',
         target = 'xmmsclient',
-        includes = '../../../.. ../../../include ../../../includepriv',
+        includes = '../../../.. ../../../include ../../../includepriv ' + xcp_includes,
         source = source,
         uselib = 'socket time',
         use = 'xmmsipc xmmssocket xmmsutils xmmstypes xmmsvisualization',
@@ -41,6 +75,12 @@ def build(bld):
         )
 
     tool.add_install_flag(bld, obj)
+
+    if bld.options.bison_copy_files == 'iknowwhatiamdoing' and not bld.env.NO_BISON:
+        bld(rule = copy_bison,
+            name = "bison_copy",
+            source = "collparser/parser.tab.c collparser/parser.tab.h collparser/scanner.lex.c",
+            after = "xmmsclient")
 
 def configure(conf):
     conf.env.XMMS_PKGCONF_FILES.append(("xmms2-client", "-lxmmsclient"))
@@ -55,7 +95,27 @@ def configure(conf):
     else:
         conf.env.have_semtimedop = True
 
+    if conf.options.no_bison:
+        conf.env.NO_BISON = True
+    else:
+        try:
+            conf.load('flex bison')
+        except ConfigurationError:
+            pass
+        if not conf.env.BISON or not conf.env.FLEX:
+            conf.env.NO_BISON = True
+        else:
+            conf.env.NO_BISON = False
+
     return True
 
 def options(opt):
-    pass
+    opt.add_option('--bison-copy-files', type="string",
+            dest='bison_copy_files', default="", metavar="iknowwhatiamdoing",
+            help="Save generated Bison/Flex C-code in the source tree. To use "
+                 "with the 'build' command. This option is for maintainers "
+                 "only. Normal users don't need it.")
+    opt.add_option('--without-bison-flex', action="store_true",
+            dest='no_bison', default=False,
+            help="Use pre-generated C-code instead of Bison/Flex sources. "
+                 "[default: autodetect]")

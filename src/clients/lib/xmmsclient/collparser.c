@@ -134,10 +134,23 @@ static char *string_intadd (char *number, int delta);
 int
 xmmsv_coll_parse (const char *pattern, xmmsv_t** coll)
 {
-	return xmmsv_coll_parse_custom (pattern,
-	                                xmmsv_coll_default_parse_tokens,
-	                                xmmsv_coll_default_parse_build,
-	                                coll);
+	xmmsv_t *res;
+	int ret = 0;
+
+	res = xmmsv_collparser_compile (pattern);
+
+	if (res && xmmsv_is_type (res, XMMSV_TYPE_COLL)) {
+		ret = 1;
+		if (coll) {
+			xmmsv_get_coll (res, coll);
+			xmmsv_coll_ref (*coll);
+		}
+	}
+	if (res) {
+		xmmsv_unref (res);
+	}
+
+	return ret;
 }
 
 /**

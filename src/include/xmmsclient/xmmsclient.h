@@ -25,6 +25,7 @@
 #include <xmmsc/xmmsv_coll.h>
 #include <xmmsc/xmmsv_c2c.h>
 #include <xmmsc/xmmsv_service.h>
+#include <xmmsclient/xmmscollparser.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -306,11 +307,11 @@ struct xmmsv_coll_token_St {
 typedef xmmsv_coll_token_t* (*xmmsv_coll_parse_tokens_f) (const char *str, const char **newpos);
 typedef xmmsv_t* (*xmmsv_coll_parse_build_f) (xmmsv_coll_token_t *tokens);
 
-int xmmsv_coll_parse (const char *pattern, xmmsv_t** coll) XMMS_PUBLIC;
-int xmmsv_coll_parse_custom (const char *pattern, xmmsv_coll_parse_tokens_f parse_f, xmmsv_coll_parse_build_f build_f, xmmsv_t** coll) XMMS_PUBLIC;
+int xmmsv_coll_parse (const char *pattern, xmmsv_t** coll) XMMS_PUBLIC XMMS_DEPRECATED;
+int xmmsv_coll_parse_custom (const char *pattern, xmmsv_coll_parse_tokens_f parse_f, xmmsv_coll_parse_build_f build_f, xmmsv_t** coll) XMMS_PUBLIC XMMS_DEPRECATED;
 
-xmmsv_t *xmmsv_coll_default_parse_build (xmmsv_coll_token_t *tokens) XMMS_PUBLIC;
-xmmsv_coll_token_t *xmmsv_coll_default_parse_tokens (const char *str, const char **newpos) XMMS_PUBLIC;
+xmmsv_t *xmmsv_coll_default_parse_build (xmmsv_coll_token_t *tokens) XMMS_PUBLIC XMMS_DEPRECATED;
+xmmsv_coll_token_t *xmmsv_coll_default_parse_tokens (const char *str, const char **newpos) XMMS_PUBLIC XMMS_DEPRECATED;
 
 
 /* broadcasts */
