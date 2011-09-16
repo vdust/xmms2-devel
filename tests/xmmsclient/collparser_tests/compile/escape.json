@@ -1,0 +1,189 @@
+{
+	"mode": "compile",
+	"cases": [
+		{
+			"pattern": "\\ ",
+			"collection": {
+				"type": "token",
+				"attributes": {
+					"value": " "
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "\\\"",
+			"collection": {
+				"type": "token",
+				"attributes": {
+					"value": "\""
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "\\'",
+			"collection": {
+				"type": "token",
+				"attributes": {
+					"value": "'"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "\\x",
+			"collection": {
+				"type": "token",
+				"attributes": {
+					"value": "x"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "\\+",
+			"collection": {
+				"type": "token",
+				"attributes": {
+					"value": "+"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "\\:",
+			"collection": {
+				"type": "token",
+				"attributes": {
+					"value": ":"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "\\~",
+			"collection": {
+				"type": "token",
+				"attributes": {
+					"value": "~"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "\\^",
+			"collection": {
+				"type": "token",
+				"attributes": {
+					"value": "^"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "\\<",
+			"collection": {
+				"type": "token",
+				"attributes": {
+					"value": "<"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "\\<\\=",
+			"collection": {
+				"type": "token",
+				"attributes": {
+					"value": "<="
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "\\=",
+			"collection": {
+				"type": "token",
+				"attributes": {
+					"value": "="
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "\\>\\=",
+			"collection": {
+				"type": "token",
+				"attributes": {
+					"value": ">="
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "\\>",
+			"collection": {
+				"type": "token",
+				"attributes": {
+					"value": ">"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "f:\\ ",
+			"collection": {
+				"type": "match",
+				"attributes": {
+					"field": "f",
+					"value": " "
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "in:coll\\ 1",
+			"collection": {
+				"type": "reference",
+				"attributes": {
+					"namespace": "Collections",
+					"reference": "coll 1"
+				}
+			}
+		},
+		{
+			"pattern": "\\:::",
+			"collection": {
+				"type": "match",
+				"attributes": {
+					"field": ":",
+					"value": ":"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "\\(:\\)",
+			"collection": {
+				"type": "match",
+				"attributes": {
+					"field": "(",
+					"value": ")"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "\\):\\(",
+			"collection": {
+				"type": "match",
+				"attributes": {
+					"field": ")",
+					"value": "("
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		}
+	]
+}

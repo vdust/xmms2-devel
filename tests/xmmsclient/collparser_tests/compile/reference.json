@@ -1,0 +1,35 @@
+{
+	"mode": "compile",
+	"cases": [
+		{
+			"pattern": "in:coll",
+			"collection": {
+				"type": "reference",
+				"attributes": {
+					"namespace": "Collections",
+					"reference": "coll"
+				}
+			}
+		},
+		{
+			"pattern": "in:Collections/coll",
+			"collection": {
+				"type": "reference",
+				"attributes": {
+					"namespace": "Collections",
+					"reference": "coll"
+				}
+			}
+		},
+		{
+			"pattern": "in:Playlists/coll",
+			"collection": {
+				"type": "reference",
+				"attributes": {
+					"namespace": "Playlists",
+					"reference": "coll"
+				}
+			}
+		}
+	]
+}

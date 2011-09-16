@@ -1,0 +1,170 @@
+{
+	"mode": "compile",
+	"cases": [
+		{
+			"pattern": "field:value",
+			"collection": {
+				"type": "match",
+				"attributes": {
+					"field": "field",
+					"value": "value"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "field~value",
+			"collection": {
+				"type": "match",
+				"attributes": {
+					"field": "field",
+					"value": "*value*"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "field^value",
+			"collection": {
+				"type": "token",
+				"attributes": {
+					"field": "field",
+					"value": "value"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "field<value",
+			"collection": {
+				"type": "smaller",
+				"attributes": {
+					"field": "field",
+					"value": "value"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "field<=value",
+			"collection": {
+				"type": "smallereq",
+				"attributes": {
+					"field": "field",
+					"value": "value"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "field=value",
+			"collection": {
+				"type": "equals",
+				"attributes": {
+					"field": "field",
+					"value": "value"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "field>=value",
+			"collection": {
+				"type": "greatereq",
+				"attributes": {
+					"field": "field",
+					"value": "value"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "field>value",
+			"collection": {
+				"type": "greater",
+				"attributes": {
+					"field": "field",
+					"value": "value"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "+field",
+			"collection": {
+				"type": "has",
+				"attributes": {
+					"field": "field"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+
+		{
+			"pattern": "field~*value",
+			"collection": {
+				"type": "match",
+				"attributes": {
+					"field": "field",
+					"value": "*value*"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "field~value*",
+			"collection": {
+				"type": "match",
+				"attributes": {
+					"field": "field",
+					"value": "*value*"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "field~*value*",
+			"collection": {
+				"type": "match",
+				"attributes": {
+					"field": "field",
+					"value": "*value*"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "field~*",
+			"collection": {
+				"type": "match",
+				"attributes": {
+					"field": "field",
+					"value": "*"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+
+		{
+			"pattern": " field:value ",
+			"collection": {
+				"type": "match",
+				"attributes": {
+					"field": "field",
+					"value": "value"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": " +field ",
+			"collection": {
+				"type": "has",
+				"attributes": {
+					"field": "field"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		}
+	]
+}

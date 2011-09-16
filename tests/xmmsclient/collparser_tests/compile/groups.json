@@ -1,0 +1,258 @@
+{
+	"mode": "compile",
+	"cases": [
+		{
+			"pattern": "(*)",
+			"collection": {
+				"type": "universe"
+			}
+		},
+		{
+			"pattern": " ( * ) ",
+			"collection": {
+				"type": "universe"
+			}
+		},
+		{
+			"pattern": "(+field)",
+			"collection": {
+				"type": "has",
+				"attributes": {
+					"field": "field"
+				},
+				"operands": [{"type": "universe"}]
+			}
+		},
+		{
+			"pattern": "(value)",
+			"collection": {
+				"type": "token",
+				"attributes": {
+					"value": "value"
+				},
+				"operands": [{"type": "universe"}]
+			}
+		},
+		{
+			"pattern": "(\"value\")",
+			"collection": {
+				"type": "token",
+				"attributes": {
+					"value": "value"
+				},
+				"operands": [{"type": "universe"}]
+			}
+		},
+		{
+			"pattern": "*(*)",
+			"collection": {
+				"type": "intersection",
+				"operands": [
+					{"type": "universe"},
+					{"type": "universe"}
+				]
+			}
+		},
+		{
+			"pattern": "(*)*",
+			"collection": {
+				"type": "intersection",
+				"operands": [
+					{"type": "universe"},
+					{"type": "universe"}
+				]
+			}
+		},
+		{
+			"pattern": "+field(*)",
+			"collection": {
+				"type": "intersection",
+				"operands": [
+					{
+						"type": "has",
+						"attributes": {
+							"field": "field"
+						},
+						"operands": [{"type": "universe"}]
+					},
+					{"type": "universe"}
+				]
+			}
+		},
+		{
+			"pattern": "(*)+field",
+			"collection": {
+				"type": "intersection",
+				"operands": [
+					{"type": "universe"},
+					{
+						"type": "has",
+						"attributes": {
+							"field": "field"
+						},
+						"operands": [{"type": "universe"}]
+					}
+				]
+			}
+		},
+		{
+			"pattern": "value(*)",
+			"collection": {
+				"type": "intersection",
+				"operands": [
+					{
+						"type": "token",
+						"attributes": {
+							"value": "value"
+						},
+						"operands": [{"type": "universe"}]
+					},
+					{"type": "universe"}
+				]
+			}
+		},
+		{
+			"pattern": "(*)value",
+			"collection": {
+				"type": "intersection",
+				"operands": [
+					{"type": "universe"},
+					{
+						"type": "token",
+						"attributes": {
+							"value": "value"
+						},
+						"operands": [{"type": "universe"}]
+					}
+				]
+			}
+		},
+		{
+			"pattern": "in:a AND (in:b OR in:c)",
+			"collection": {
+				"type": "intersection",
+				"operands": [
+					{
+						"type": "reference",
+						"attributes": {
+							"namespace": "Collections",
+							"reference": "a"
+						}
+					},
+					{
+						"type": "union",
+						"operands": [
+							{
+								"type": "reference",
+								"attributes": {
+									"namespace": "Collections",
+									"reference": "b"
+								}
+							},
+							{
+								"type": "reference",
+								"attributes": {
+									"namespace": "Collections",
+									"reference": "c"
+								}
+							}
+						]
+					}
+				]
+			}
+		},
+		{
+			"pattern": "in:a AND(in:b OR in:c)",
+			"collection": {
+				"type": "intersection",
+				"operands": [
+					{
+						"type": "reference",
+						"attributes": {
+							"namespace": "Collections",
+							"reference": "a"
+						}
+					},
+					{
+						"type": "union",
+						"operands": [
+							{
+								"type": "reference",
+								"attributes": {
+									"namespace": "Collections",
+									"reference": "b"
+								}
+							},
+							{
+								"type": "reference",
+								"attributes": {
+									"namespace": "Collections",
+									"reference": "c"
+								}
+							}
+						]
+					}
+				]
+			}
+		},
+		{
+			"pattern": "NOT(in:b OR in:c)",
+			"collection": {
+				"type": "complement",
+				"operands": [
+					{
+						"type": "union",
+						"operands": [
+							{
+								"type": "reference",
+								"attributes": {
+									"namespace": "Collections",
+									"reference": "b"
+								}
+							},
+							{
+								"type": "reference",
+								"attributes": {
+									"namespace": "Collections",
+									"reference": "c"
+								}
+							}
+						]
+					}
+				]
+			}
+		},
+		{
+			"pattern": "#42 OR (#43)",
+			"collection": {
+				"type": "union",
+				"operands": [
+					{
+						"type": "idlist",
+						"idlist": [42]
+					},
+					{
+						"type": "idlist",
+						"idlist": [43]
+					}
+				]
+			}
+		},
+		{
+			"pattern": "(#40-45)#43-48",
+			"collection": {
+				"type": "intersection",
+				"operands": [
+					{
+						"type": "idlist",
+						"idlist": [40, 41, 42, 43, 44, 45]
+					},
+					{
+						"type": "idlist",
+						"idlist": [43, 44, 45, 46, 47, 48]
+					}
+				]
+			}
+		}
+	]
+}

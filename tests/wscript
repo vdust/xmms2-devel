@@ -37,6 +37,10 @@ test_xform_src = """
 server/t_xform.c
 """.split()
 
+test_xmmsclient_src = """
+xmmsclient/t_collparser.c
+""".split()
+
 mlib_runner_src = """
 server/medialib-runner.c
 """.split()
@@ -159,6 +163,16 @@ def build(bld):
             uselib = 'cunit ncurses DISABLE_WRITESTRINGS',
             install_path = None
             )
+
+    bld(features = "c cprogram test",
+        target = "test_xmmsclient",
+        source = test_xmmsclient_src,
+        includes = '. .. runner ../src ../src/includepriv ../src/include',
+        use = "xmmsclient testutils",
+        uselib = "cunit ncurses valgrind DISABLE_WRITESTRINGS",
+        ut_cwd = bld.path.abspath(),
+        install_path = None
+        )
 
 def options(o):
     o.load("unittest", tooldir="waftools")

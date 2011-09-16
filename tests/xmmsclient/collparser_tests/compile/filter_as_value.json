@@ -1,0 +1,105 @@
+{
+	"mode": "compile",
+	"cases": [
+		{
+			"pattern": "::",
+			"collection": {
+				"type": "match",
+				"attributes": {
+					"value": ":"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": ":~",
+			"collection": {
+				"type": "match",
+				"attributes": {
+					"value": "~"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": ":^",
+			"collection": {
+				"type": "match",
+				"attributes": {
+					"value": "^"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": ":<",
+			"collection": {
+				"type": "match",
+				"attributes": {
+					"value": "<"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": ":<=",
+			"collection": {
+				"type": "match",
+				"attributes": {
+					"value": "<="
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": ":>=",
+			"collection": {
+				"type": "match",
+				"attributes": {
+					"value": ">="
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": ":>",
+			"collection": {
+				"type": "match",
+				"attributes": {
+					"value": ">"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": ":+",
+			"collection": {
+				"type": "match",
+				"attributes": {
+					"value": "+"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "++",
+			"collection": {
+				"type": "has",
+				"attributes": {
+					"field": "+"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "+:",
+			"collection": {
+				"type": "has",
+				"attributes": {
+					"field": ":"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		}
+	]
+}

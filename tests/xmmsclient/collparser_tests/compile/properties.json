@@ -1,0 +1,95 @@
+{
+	"mode": "compile",
+	"cases": [
+		{
+			"pattern": "+a",
+			"collection": {
+				"type": "has",
+				"attributes": {
+					"field": "artist"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "+b",
+			"collection": {
+				"type": "has",
+				"attributes": {
+					"field": "album"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "+d",
+			"collection": {
+				"type": "has",
+				"attributes": {
+					"field": "date"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "+l",
+			"collection": {
+				"type": "has",
+				"attributes": {
+					"field": "album"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "+t",
+			"collection": {
+				"type": "has",
+				"attributes": {
+					"field": "title"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "+n",
+			"collection": {
+				"type": "has",
+				"attributes": {
+					"field": "tracknr"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "+y",
+			"collection": {
+				"type": "has",
+				"attributes": {
+					"field": "date"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "+g",
+			"collection": {
+				"type": "has",
+				"attributes": {
+					"field": "genre"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "+u",
+			"collection": {
+				"type": "has",
+				"attributes": {
+					"field": "url"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		}
+	]
+}

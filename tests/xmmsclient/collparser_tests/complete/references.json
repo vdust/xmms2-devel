@@ -1,0 +1,70 @@
+{
+	"mode": "complete",
+	"cases": [
+		{
+			"pattern": "in:foo",
+			"complete-data": {
+				"value": "foo",
+				"start_line": 0,
+				"start_column": 3,
+				"end_line": 0,
+				"end_column": 6,
+				"complete": [
+					"reference"
+					]
+			}
+		},
+		{
+			"pattern": "in:foo ",
+			"complete-data": {
+				"context": /* Collection */ {
+					"type": "reference",
+					"attributes": {
+						"reference": "foo",
+						"namespace": "Collections"
+					},
+					"operands": []
+				},
+				"complete": [
+					"binary-op",
+					"unary-op",
+					"field",
+					"filter",
+					"value",
+					"universe",
+					"open-group",
+					"sequence"
+					]
+			}
+		},
+		{
+			"pattern": "in:",
+			"complete-data": {
+				"value": "",
+				"start_line": 0,
+				"start_column": 3,
+				"end_line": 0,
+				"end_column": 3,
+				"complete": [
+					"reference"
+					]
+			}
+		}
+		/* { */
+			/* "pattern": "", */
+			/* "complete-data": { */
+				/* "context": /\* Collection *\/ {}, */
+				/* "field": null, */
+				/* "filter": null, */
+				/* "value": null, */
+				/* "start_line": 0, */
+				/* "start_column": 0, */
+				/* "end_line": 0, */
+				/* "end_column": 0, */
+				/* "complete": [ */
+					/* ] */
+			/* } */
+		/* } */
+	]
+}
+

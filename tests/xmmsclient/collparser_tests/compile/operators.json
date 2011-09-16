@@ -1,0 +1,169 @@
+{
+	"mode": "compile",
+	"cases": [
+		{
+			"pattern": "NOT *",
+			"collection": {
+				"type": "complement",
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "in:a OR in:b OR in:c",
+			"collection": {
+				"type": "union",
+				"operands": [
+					{
+						"type": "reference",
+						"attributes": {
+							"namespace": "Collections",
+							"reference": "a"
+						}
+					},
+					{
+						"type": "reference",
+						"attributes": {
+							"namespace": "Collections",
+							"reference": "b"
+						}
+					},
+					{
+						"type": "reference",
+						"attributes": {
+							"namespace": "Collections",
+							"reference": "c"
+						}
+					}
+				]
+			}
+		},
+		{
+			"pattern": "in:a AND in:b AND in:c",
+			"collection": {
+				"type": "intersection",
+				"operands": [
+					{
+						"type": "reference",
+						"attributes": {
+							"namespace": "Collections",
+							"reference": "a"
+						}
+					},
+					{
+						"type": "reference",
+						"attributes": {
+							"namespace": "Collections",
+							"reference": "b"
+						}
+					},
+					{
+						"type": "reference",
+						"attributes": {
+							"namespace": "Collections",
+							"reference": "c"
+						}
+					}
+				]
+			}
+		},
+		{
+			"pattern": "in:a in:b in:c",
+			"collection": {
+				"type": "intersection",
+				"operands": [
+					{
+						"type": "reference",
+						"attributes": {
+							"namespace": "Collections",
+							"reference": "a"
+						}
+					},
+					{
+						"type": "reference",
+						"attributes": {
+							"namespace": "Collections",
+							"reference": "b"
+						}
+					},
+					{
+						"type": "reference",
+						"attributes": {
+							"namespace": "Collections",
+							"reference": "c"
+						}
+					}
+				]
+			}
+		},
+		{
+			"pattern": "in:a in:b OR in:c in:d",
+			"collection": {
+				"type": "union",
+				"operands": [
+					{
+						"type": "intersection",
+						"operands": [
+							{
+								"type": "reference",
+								"attributes": {
+									"namespace": "Collections",
+									"reference": "a"
+								}
+							},
+							{
+								"type": "reference",
+								"attributes": {
+									"namespace": "Collections",
+									"reference": "b"
+								}
+							}
+						]
+					},
+					{
+						"type": "intersection",
+						"operands": [
+							{
+								"type": "reference",
+								"attributes": {
+									"namespace": "Collections",
+									"reference": "c"
+								}
+							},
+							{
+								"type": "reference",
+								"attributes": {
+									"namespace": "Collections",
+									"reference": "d"
+								}
+							}
+						]
+					}
+				]
+			}
+		},
+		{
+			"pattern": "NOT in:a NOT *",
+			"collection": {
+				"type": "intersection",
+				"operands": [
+					{
+						"type": "complement",
+						"operands": [
+							{
+								"type": "reference",
+								"attributes": {
+									"namespace": "Collections",
+									"reference": "a"
+								}
+							}
+						]
+					},
+					{
+						"type": "complement",
+						"operands": [{ "type": "universe" }]
+					}
+				]
+			}
+		}
+	]
+}

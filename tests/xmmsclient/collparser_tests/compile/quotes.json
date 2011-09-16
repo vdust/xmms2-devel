@@ -1,0 +1,128 @@
+{
+	"mode": "compile",
+	"cases": [
+		{
+			"pattern": "\"field\":value",
+			"collection": {
+				"type": "match",
+				"attributes": {
+					"field": "field",
+					"value": "value"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "'field':value",
+			"collection": {
+				"type": "match",
+				"attributes": {
+					"field": "field",
+					"value": "value"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "'fie:ld':value",
+			"collection": {
+				"type": "match",
+				"attributes": {
+					"field": "fie:ld",
+					"value": "value"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "+\"field\"",
+			"collection": {
+				"type": "has",
+				"attributes": {
+					"field": "field"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "\"value\"",
+			"collection": {
+				"type": "token",
+				"attributes": {
+					"value": "value"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "\"*\"",
+			"collection": {
+				"type": "token",
+				"attributes": {
+					"value": "*"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "'value'",
+			"collection": {
+				"type": "token",
+				"attributes": {
+					"value": "value"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "'*'",
+			"collection": {
+				"type": "token",
+				"attributes": {
+					"value": "*"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "v\"al\"'ue'",
+			"collection": {
+				"type": "token",
+				"attributes": {
+					"value": "value"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "v\"a'l\"'u\"e'",
+			"collection": {
+				"type": "token",
+				"attributes": {
+					"value": "va'lu\"e"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "\"value\" ",
+			"collection": {
+				"type": "token",
+				"attributes": {
+					"value": "value"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "'value' ",
+			"collection": {
+				"type": "token",
+				"attributes": {
+					"value": "value"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		}
+	]
+}

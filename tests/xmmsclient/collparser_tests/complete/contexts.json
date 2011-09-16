@@ -1,0 +1,126 @@
+{
+	"mode": "complete",
+	"cases": [
+		{
+			"pattern": "foo bar",
+			"complete-data": {
+				"context": /* collection */ {
+					"type": "token",
+					"attributes": {
+						"value": "foo"
+					},
+					"operands": [{"type": "universe"}]
+				},
+				"value": "bar",
+				"start_line": 0,
+				"start_column": 4,
+				"end_line": 0,
+				"end_column": 7,
+				"complete": [
+					"field",
+					"filter",
+					"value"
+					]
+			}
+		},
+		{
+			"pattern": "foo AND bar",
+			"complete-data": {
+				"context": /* collection */ {
+					"type": "token",
+					"attributes": {
+						"value": "foo"
+					},
+					"operands": [{"type": "universe"}]
+				},
+				"value": "bar",
+				"start_line": 0,
+				"start_column": 8,
+				"end_line": 0,
+				"end_column": 11,
+				"complete": [
+					"field",
+					"filter",
+					"value"
+					]
+			}
+		},
+		{
+			"pattern": "foo OR bar",
+			"complete-data": {
+				"value": "bar",
+				"start_line": 0,
+				"start_column": 7,
+				"end_line": 0,
+				"end_column": 10,
+				"complete": [
+					"field",
+					"filter",
+					"value"
+					]
+			}
+		},
+		{
+			"pattern": "foo AND NOT bar",
+			"complete-data": {
+				"value": "bar",
+				"start_line": 0,
+				"start_column": 12,
+				"end_line": 0,
+				"end_column": 15,
+				"complete": [
+					"field",
+					"filter",
+					"value"
+					]
+			}
+		},
+		{
+			"pattern": "(* AND * OR NOT *) bar",
+			"complete-data": {
+				"context": /* collection */ {
+					"type": "union",
+					"attributes": {},
+					"operands": [
+						/* collection */ {
+							"type": "intersection",
+							"attributes": {},
+							"operands": [{"type": "universe"}, {"type": "universe"}]
+						},
+						/* collection */ {
+							"type": "complement",
+							"attributes": {},
+							"operands": [{"type": "universe"}]
+						}
+					]
+				},
+				"value": "bar",
+				"start_line": 0,
+				"start_column": 19,
+				"end_line": 0,
+				"end_column": 22,
+				"complete": [
+					"field",
+					"filter",
+					"value"
+					]
+			}
+		}
+		/* { */
+			/* "pattern": "", */
+			/* "complete-data": { */
+				/* "context": /\* Collection *\/ {}, */
+				/* "field": null, */
+				/* "filter": null, */
+				/* "value": null, */
+				/* "start_line": 0, */
+				/* "start_column": 0, */
+				/* "end_line": 0, */
+				/* "end_column": 0, */
+				/* "complete": [ */
+					/* ] */
+			/* } */
+		/* } */
+	]
+}
+

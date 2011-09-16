@@ -1,0 +1,118 @@
+{
+	"mode": "compile",
+	"cases": [
+		{
+			"pattern": ":value",
+			"collection": {
+				"type": "match",
+				"attributes": {
+					"value": "value"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "~value",
+			"collection": {
+				"type": "match",
+				"attributes": {
+					"value": "*value*"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "^value",
+			"collection": {
+				"type": "token",
+				"attributes": {
+					"value": "value"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "<value",
+			"collection": {
+				"type": "smaller",
+				"attributes": {
+					"value": "value"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "<=value",
+			"collection": {
+				"type": "smallereq",
+				"attributes": {
+					"value": "value"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": "=value",
+			"collection": {
+				"type": "equals",
+				"attributes": {
+					"value": "value"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": ">=value",
+			"collection": {
+				"type": "greatereq",
+				"attributes": {
+					"value": "value"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+		{
+			"pattern": ">value",
+			"collection": {
+				"type": "greater",
+				"attributes": {
+					"value": "value"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+
+		{
+			"pattern": ":value ",
+			"collection": {
+				"type": "match",
+				"attributes": {
+					"value": "value"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+
+		{
+			"pattern": "value",
+			"collection": {
+				"type": "token",
+				"attributes": {
+					"value": "value"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		},
+
+		{
+			"pattern": "value ",
+			"collection": {
+				"type": "token",
+				"attributes": {
+					"value": "value"
+				},
+				"operands": [{ "type": "universe" }]
+			}
+		}
+	]
+}

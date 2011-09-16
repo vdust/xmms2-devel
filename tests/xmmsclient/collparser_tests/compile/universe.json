@@ -1,0 +1,23 @@
+/* Patterns for Universe collection.
+ */
+{
+	"mode": "compile",
+	"cases": [
+		{
+			"pattern": "*",
+			"collection": { "type": "universe" }
+		},
+		{
+			"pattern": "* ",
+			"collection": { "type": "universe" }
+		},
+		{
+			"pattern": "in:'All Media'",
+			"collection": { "type": "universe" }
+		},
+		{
+			"pattern": "in:Collections/'All Media'",
+			"collection": { "type": "universe" }
+		}
+	]
+}
