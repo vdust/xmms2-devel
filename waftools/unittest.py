@@ -6,10 +6,16 @@ import re
 class create_test_runner(Task.Task):
     def generate_runner_source_code(self):
         TEST_CASE_PREFIX = "__testcase_wrapper_"
+        PRESETUP_PREFIX = "__presetup_"
 
         declare = []
         register = []
-        for i, (suite, tests) in enumerate(self.suites):
+        for i, (presetup, suite, tests) in enumerate(self.suites):
+            if presetup:
+                register.append("""%s ();""" % (PRESETUP_PREFIX + presetup))
+                declare.append("""void %s (void);""" % (PRESETUP_PREFIX + presetup))
+            if not suite:
+                continue
             register.append("""CU_pSuite suite%d = CU_add_suite ("%s", NULL, NULL);""" % (i, suite))
             for test in sorted(tests):
                 register.append("""CU_add_test (suite%d, "%s", %s);""" % (i, test, TEST_CASE_PREFIX + test))
@@ -24,9 +30,10 @@ class create_test_runner(Task.Task):
         code = code.replace("@@REGISTER_TEST_SUITES@@", register)
         self.outputs[0].write(code)
 
-scraper = re.compile("^(CASE|SETUP)\s*\(([^)]+)\)")
+scraper = re.compile("^(CASE|SETUP|PRESETUP)\s*\(([^)]+)\)")
 
 def scrape_test_cases(node):
+    presetup = ""
     suite = ""
     tests = []
     for line in node.read().split("\n"):
@@ -34,12 +41,14 @@ def scrape_test_cases(node):
         if not match:
             continue
         typ, name = match.groups()
-        if typ == "SETUP":
+        if typ == "PRESETUP":
+            presetup = name
+        elif typ == "SETUP":
             suite = name
         elif typ == "CASE":
             tests.append(name)
-    if suite and tests:
-        return suite, tests
+    if presetup or (suite and tests):
+        return presetup, suite, tests
     return False
 
 @feature("test")

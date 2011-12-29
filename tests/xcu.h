@@ -26,6 +26,8 @@
 int xcu_pre_case (const char *name);
 void xcu_post_case (const char *name);
 
+#define PRESETUP(name) \
+	void __presetup_##name (void)
 
 #define CASE(name)							\
 	static void __testcase_##name (void);				\
