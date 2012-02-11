@@ -178,7 +178,11 @@ xcp_build_filter (xmmsv_coll_type_t filter, const char *field, const char *value
 	coll = xmmsv_new_coll (filter);
 
 	if (field) {
-		xmmsv_coll_attribute_set (coll, "field", field);
+		if (!strcmp (field, "id")) {
+			xmmsv_coll_attribute_set_string (coll, "type", "id");
+		} else {
+			xmmsv_coll_attribute_set_string (coll, "field", field);
+		}
 	}
 	if (value) {
 		xmmsv_coll_attribute_set_string (coll, "value", value);
