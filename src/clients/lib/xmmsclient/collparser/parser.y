@@ -46,7 +46,7 @@
 # define PRINT_R(from, to) ((void)0)
 #endif
 
-static char *_prepare_match (const char *s, int alt);
+static char *_prepare_match (const char *s, int alt, int is_url);
 void xcp_yyerror (YYLTYPE *locp, xmmsv_collparser_t *collparser, void *scanner, const char *msg);
 int xcp_yylex (YYSTYPE *lval, YYLTYPE *lloc, void *scanner);
 %}
@@ -974,7 +974,7 @@ binary_filter :
 		if (set_coll) {
 			xmmsv_t *c;
 			char *str;
-			str = _prepare_match ($3->string, $2.alt);
+			str = _prepare_match ($3->string, $2.alt, !strcmp($1->string, "url"));
 			c = xcp_build_filter (($2).f, $1->string, str);
 			$$ = xcp_data_new_coll (c);
 			xmmsv_unref (c);
@@ -1017,7 +1017,7 @@ binary_filter :
 		if (set_coll) {
 			xmmsv_t *c;
 			char *str;
-			str = _prepare_match ($2->string, $1.alt);
+			str = _prepare_match ($2->string, $1.alt, 0);
 			c = xcp_build_filter (($1).f, NULL, str);
 			$$ = xcp_data_new_coll (c);
 			xmmsv_unref (c);
@@ -1114,11 +1114,18 @@ xcp_parse (xmmsv_collparser_t *collparser, void *scanner)
 }
 
 static char *
-_prepare_match (const char *s, int alt)
+_prepare_match (const char *s, int alt, int is_url)
 {
+	char *enc_s = NULL;
 	char *str;
 	int n;
 	n = strlen(s);
+
+	if (alt == 1 && is_url) {
+		enc_s = xmmsv_encode_url (s);
+		s = enc_s;
+	}
+
 	if (alt == 0 || (s[0] == '*' && s[n-1] == '*')) {
 		str = xcp_strdup_safe (s);
 	} else if (s[0] == '*') {
@@ -1128,6 +1135,11 @@ _prepare_match (const char *s, int alt)
 	} else {
 		str = xcp_strjoin ("*", s, "*", NULL);
 	}
+
+	if (enc_s) {
+		free (enc_s);
+	}
+
 	return str;
 }
 
