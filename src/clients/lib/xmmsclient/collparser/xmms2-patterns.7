@@ -28,7 +28,7 @@
 .\" (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 .\" THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 .\"
-.TH XMPATTERN 7 "Draft 0.2" "" "Draft 0.2"
+.TH XMMS2-PATTERNS 7
 .SH NAME
 xmpattern - Patterns in the XMMS2 Collection Parser library.
 .SH DESCRIPTION
@@ -70,6 +70,9 @@ genre
 url
 .RE
 .PD
+.PP
+A property may contain other characters, in the condition they are escaped
+with a backslash '\\' or quoted with double or single quotes.
 .SS Values
 .PP
 A value can contain any character, except for special characters which must be
@@ -130,11 +133,12 @@ Match all media that match both \fIexpr1\fP and \fIexpr2\fP
 Match all media that match both \fIexpr1\fP and \fIexpr2\fP
 .TP
 .IB expr1 " OR " expr2
+Match all media that match either \fIexpr1\fP, \fIexpr2\fP or both
 .PD
 .SH "FILTERS"
 .PP
-In the following rules, when \fIprop\fP is omitted (if optional), rules are
-equivalent to the union of the rules using album, artist and title as \fIprop\fP.
+In the following rules, when \fIprop\fP is omitted (if optional),
+the value is matched on any property defined in a media.
 .PP
 .PD 0
 .TP
@@ -182,6 +186,12 @@ Match media of which id appears in the sequence \fIseq\fP. A sequence is a
 comma (\fB,\fP) separated list of ids and ranges. A range is of the form
 \fIfirst\fP\fB-\fP\fIlast\fP
 .PD
+.SS Special case with the url property
+.PP
+When matching against the \fIurl\fP property, the value is expected to be
+url-encoded, unless the fuzzy match operator (i.e. url\fB~\fPvalue) is
+used, in which case the value is first encoded (including * and ? that lose
+their glob meaning in this case).
 .SH EXAMPLES
 .PP
 Match all media which are part of an album, except for the first tracks
@@ -197,19 +207,34 @@ or
 .RE
 .sp
 .PP
-Match all media released before 1999 or after 2009 and which have the rating property.
+Match all media released before 1999 or after 2009 and which have the rating
+property.
 .RS
 .PP
 \fB+\fPrating \fBAND\fP \fB(\fP date\fB<\fP1999 \fBOR\fP date\fB>\fP2009 \fB)\fP
 .RE
 .sp
 .PP
-Match all media of which album, title or artist starts with "The " and album contains the token "Best", except for media with ids 42, 84, 168 to 336 and 672.
+Match all media of which album, title or artist starts with "The " and album
+contains the token "Best", except for media with ids 42, 84, 168 to 336 and 672.
 .RS
 .PP
 \fB:\fP"The *" \fBAND\fP b\fB^\fPBest \fBAND\fP \fBNOT\fP \fB#\fP42,84,168-336,672
 .RE
+.sp
+.PP
+Match all media of which the url contains a directory starting by 'Best ' but
+is not 'Best Of' (see how the second filter requires the space to be encoded
+manually)
+.RS
+.PP
+url\fB~\fP"/Best " \fBAND NOT\fP url\fB:\fP"*/Best+Of/*"
+.RE
 .SH "SEE ALSO"
-.BR xmcollparse (3)
-.SH AUTHOR
-This manual page was written by Raphael Bois <virtualdust@gmail.com>
+.BR xmms2 (1)
+.SH AUTHORS
+Raphael Bois
+.PP
+See the
+.B AUTHORS
+file in the XMMS2 source distribution for more info.

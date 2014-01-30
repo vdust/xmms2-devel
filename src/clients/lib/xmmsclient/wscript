@@ -22,7 +22,7 @@ def copy_bison(task):
             if copy:
                 copy.close()
 
-def xcp_list_source(bld):
+def collparser_list_source(bld):
     source = bld.path.ant_glob('collparser/*.c')
     includes = "collparser"
     if bld.env.NO_BISON:
@@ -61,12 +61,12 @@ def build(bld):
     else:
         source.extend(["visualization/dummy.c"])
 
-    xcp_source, xcp_includes = xcp_list_source(bld)
-    source += xcp_source
+    collparser_source, collparser_includes = collparser_list_source(bld)
+    source += collparser_source
 
     obj = bld(features = 'c cshlib visibilityhidden',
         target = 'xmmsclient',
-        includes = '../../../.. ../../../include ../../../includepriv ' + xcp_includes,
+        includes = '../../../.. ../../../include ../../../includepriv ' + collparser_includes,
         source = source,
         uselib = 'socket time',
         use = 'xmmsipc xmmssocket xmmsutils xmmstypes xmmsvisualization',
@@ -75,6 +75,10 @@ def build(bld):
         )
 
     tool.add_install_flag(bld, obj)
+
+    bld(features = 'man',
+        source = 'collparser/xmms2-patterns.7'
+    )
 
     if bld.options.bison_copy_files == 'iknowwhatiamdoing' and not bld.env.NO_BISON:
         bld(rule = copy_bison,

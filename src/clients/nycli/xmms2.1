@@ -755,94 +755,9 @@ Get or set the volume only for the named channel.
 .PP
 
 .SH PATTERN
-Patterns are used to search for songs in the media library, some of these patterns may require escaping (with '\\') depending on what shell is used. The properties can be found in the output of \fBxmms2 info\fR.
-.PP
-
-.TP
-<property>\fB:\fR<string>
-.PP
-.RS 4
-Match songs whose property matches the string. A \fI?\fR in the string indicates a single wildcard character, and a \fI*\fR indicates multiple wildcard characters.
-.RE
-
-.TP
-<property>\fB~\fR<string>
-.PP
-.RS 4
-Match songs whose property fuzzily matches the string. Equal to matching by <property>\fB:\fR*<string>*.
-.RE
-
-.TP
-<property><operation><number>
-.PP
-.RS 4
-The operation can be \fB<\fR, \fB<=\fR, \fB>\fR or \fB>=\fR, the pattern will
-match songs whose property is a numerical value smaller, smaller or equal, bigger, bigger or equal in comparison to the number.
-.RE
-
-.TP
-\fB+\fR<property>
-.PP
-.RS 4
-Match songs which has the property.
-.RE
-
-.TP
-\fBin:\fR<namespace>/<collection>
-.PP
-.RS 4
-Match songs in the given collection. The namespace may be \fIPlaylists\fR, or \fICollections\fR.
-.RE
-
-.TP
-\fBNOT\fR <pattern>
-.PP
-.RS 4
-Match the complement of the pattern.
-.RE
-
-<pattern> <pattern>
-.br
-<pattern> \fBAND\fR <pattern>
-.PP
-.RS 4
-Match songs that are matched by both patterns.
-.RE
-
-.TP
-<pattern> \fBOR\fR <pattern>
-.PP
-.RS 4
-Match songs that are matched by at least one of the two pattern.
-.RE
-
-.TP
-\fB(\fR <pattern> \fB)\fR
-.PP
-.RS 4
-Match songs matched by the pattern, used for grouping AND and OR matches.
-.RE
-
-.TP
-<string>
-.PP
-.RS 4
-Match songs whose artist, title or album match the string.
-.RE
-
-.TP
-~<string>
-.PP
-.RS 4
-Match songs whose artist, title or album fuzzily matches the string.
-.RE
-
-.TP
-\fB#\fR<number>
-.PP
-.RS 4
-Match a specific media library id.
-.RE
+See
+.BR xmms2-patterns (7)
+for a full documentation on patterns syntax.
 
 .SH POSITION PATTERN
 Position patterns are used together with commands that operate on playlist content.
@@ -1118,6 +1033,8 @@ tcp://[IPv6-Address]:port
 To connect via unix socket
 unix:///path/to/socket
 .RE
+.SH "SEE ALSO"
+.BR xmms2-patterns (7)
 .SH BUGS
 Please report all bugs at http://bugs.xmms2.org
 .SH AUTHORS
