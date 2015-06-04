@@ -1,0 +1,43 @@
+# encoding: utf-8
+from waflib import Logs, Errors
+import os
+
+def build(bld):
+    target = bld.path.find_or_declare('xmms2/ipcobjects.py')
+    bld(source = [
+            'xmms2/ipcobjects.build.py',
+            '../../../ipc.xml',
+            ],
+        target = target,
+        rule = '${PYTHON} ${SRC[0].abspath()} ${SRC[1].abspath()} > ${TGT}',
+        before = 'py',
+        )
+
+    files = bld.path.ant_glob('xmms2/**/*.py', excl='**/*.build.py')
+
+    # compile .py files and install .py, .pyc and .pyo files
+    bld(features = 'py',
+        source = files,
+        install_from = bld.path,
+        )
+    bld(features = 'py',
+        source = target,
+        install_from = target.parent.parent,
+        )
+
+def configure(conf):
+    conf.load('python')
+    if not conf.env.PYTHON:
+        conf.fatal("python not found")
+
+    conf.check_python_version((3,2))
+
+    prefix = os.path.commonprefix([conf.env.PYTHONDIR, conf.env.PREFIX])
+    if prefix != conf.env.PREFIX:
+        Logs.warn("Default python libdir is not under PREFIX. Specify path "
+                  "manually using the PYTHONDIR environment variable if you "
+                  "don't want the python bindings to be installed to %s"
+                  % conf.env.PYTHONDIR)
+
+def options(opt):
+    opt.load('python')

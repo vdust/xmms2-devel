@@ -75,6 +75,7 @@ src/clients/lib/xmmsclient++
 src/clients/lib/xmmsclient++-glib
 src/clients/lib/xmmsclient-cf
 src/clients/lib/python
+src/clients/lib/python3
 src/clients/lib/perl
 src/clients/lib/ruby
 src/lib/s4/src/tools/s4
