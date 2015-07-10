@@ -227,18 +227,28 @@ command_introspect (xmmsc_connection_t *c, xmmsv_t *args)
 		xmmsv_get_list_iter (keyfilter, &it);
 
 		while (xmmsv_list_iter_valid (it)) {
-			xmmsv_list_iter_entry_string (it, &key);
-			xmmsv_dict_get (ret, key, &v);
+			if (!xmmsv_list_iter_entry_string (it, &key)) {
+				xmmsv_unref(ret);
+				ret = xmmsv_new_error("Invalid keyfilter. Must be a list of strings.");
+				break;
+			}
 
-			/* Get a reference to the value and unref the
-			 * parent dict since we won't need it anymore.
-			 */
-			xmmsv_ref (v);
-			xmmsv_unref (ret);
-			ret = v;
+			if (xmmsv_dict_get (ret, key, &v)) {
+				/* Get a reference to the value and unref the
+				 * parent dict since we won't need it anymore.
+				 */
+				xmmsv_ref (v);
+				xmmsv_unref (ret);
+				ret = v;
+			} else {
+				xmmsv_unref(ret);
+				ret = xmmsv_new_error("keyfilter target not found.");
+				break;
+			}
 
 			xmmsv_list_iter_next (it);
 		}
+		xmmsv_list_iter_explicit_destroy(it);
 	}
 
 	return ret;
